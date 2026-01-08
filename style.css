@@ -68,13 +68,86 @@ h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; tex
 .badge { display: inline-block; background: var(--light); color: var(--primary); padding: 8px 15px; border: 1px solid var(--wood); border-radius: 20px; margin-right: 10px; font-size: 0.9rem; font-weight: 600; }
 
 /* Cartes Services */
-.service-card { background: white; text-align: center; text-decoration: none; color: #333; border-radius: 4px; transition: all 0.4s; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; border-bottom: 3px solid transparent; }
-.service-card:hover { transform: translateY(-10px); border-bottom: 3px solid var(--accent); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-.icon-box { font-size: 3rem; color: var(--accent); margin-bottom: 20px; transition: transform 0.3s; }
-.service-card:hover .icon-box { transform: scale(1.1) rotate(10deg); }
-.service-card h3 { font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 15px; }
-.link-text { color: var(--accent); font-weight: 600; text-transform: uppercase; margin-top: auto; display: inline-block; transition: transform 0.3s ease; font-size: 0.9rem; }
-.service-card:hover .link-text { transform: translateX(5px); }
+/* =========================================
+   CARTES ACTIVITÉS AVEC IMAGE DE FOND
+   ========================================= */
+.service-card {
+    /* Structure */
+    border-radius: 8px;
+    padding: 40px 20px; /* Un peu moins large sur les côtés */
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px; /* Hauteur forcée pour bien voir la photo */
+    transition: all 0.4s ease;
+    
+    /* Image de fond */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border: none; /* On enlève les bordures précédentes */
+}
+
+/* L'OVERLAY (Filtre noir transparent) */
+/* C'est ce qui permet de lire le texte sur la photo */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)); /* Dégradé noir */
+    z-index: -1; /* Derrière le texte */
+    transition: background 0.4s ease;
+}
+
+/* Au survol : on éclaircit un peu pour mieux voir l'image */
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+.service-card:hover::before {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+}
+
+/* TEXTES & COULEURS SUR FOND SOMBRE */
+.service-card h3 {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: white; /* Titre en blanc */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.service-card p {
+    color: #f1f1f1; /* Gris très clair pour le texte */
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+.icon-box {
+    font-size: 3rem;
+    color: var(--wood); /* Cyan clair pour que ça ressorte bien */
+    margin-bottom: 20px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+}
+
+.link-text {
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;
+    margin-top: auto;
+}
+
 
 /* =========================================
    NOUVEAU : CARTES VIDÉO INSTAGRAM
