@@ -67,14 +67,13 @@ h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; tex
 .presentation-text h2, .presentation-text h3, .presentation-text p { text-align: left; }
 .badge { display: inline-block; background: var(--light); color: var(--primary); padding: 8px 15px; border: 1px solid var(--wood); border-radius: 20px; margin-right: 10px; font-size: 0.9rem; font-weight: 600; }
 
-/* Cartes Services */
 /* =========================================
-   CARTES ACTIVITÉS AVEC IMAGE DE FOND
+   CARTES ACTIVITÉS AVEC IMAGE DE FOND (MODIFIÉ)
    ========================================= */
 .service-card {
     /* Structure */
     border-radius: 8px;
-    padding: 40px 20px; /* Un peu moins large sur les côtés */
+    padding: 40px 20px;
     text-align: center;
     text-decoration: none;
     display: flex;
@@ -91,27 +90,26 @@ h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; tex
     z-index: 1;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    border: none; /* On enlève les bordures précédentes */
+    border: none; /* Plus de bordure standard */
 }
 
-/* L'OVERLAY (Filtre noir transparent) */
-/* C'est ce qui permet de lire le texte sur la photo */
+/* L'OVERLAY (Filtre noir transparent pour lire le texte) */
 .service-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)); /* Dégradé noir */
-    z-index: -1; /* Derrière le texte */
+    z-index: -1;
     transition: background 0.4s ease;
 }
 
-/* Au survol : on éclaircit un peu pour mieux voir l'image */
+/* Au survol */
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 .service-card:hover::before {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)); /* S'éclaircit un peu */
 }
 
 /* TEXTES & COULEURS SUR FOND SOMBRE */
@@ -119,12 +117,12 @@ h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; tex
     font-family: var(--font-title);
     font-size: 1.8rem;
     margin-bottom: 15px;
-    color: white; /* Titre en blanc */
+    color: white !important; /* Force le blanc */
     text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 .service-card p {
-    color: #f1f1f1; /* Gris très clair pour le texte */
+    color: #f1f1f1 !important; /* Gris très clair */
     font-size: 1rem;
     margin-bottom: 20px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.6);
@@ -132,11 +130,13 @@ h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; tex
 
 .icon-box {
     font-size: 3rem;
-    color: var(--wood); /* Cyan clair pour que ça ressorte bien */
+    color: var(--wood); /* On utilise le cyan clair pour ressortir sur le foncé */
     margin-bottom: 20px;
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     transition: transform 0.3s;
 }
+
+.service-card:hover .icon-box { transform: scale(1.1) rotate(10deg); }
 
 .link-text {
     color: white;
@@ -150,21 +150,20 @@ h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; tex
 
 
 /* =========================================
-   NOUVEAU : CARTES VIDÉO INSTAGRAM
+   CARTES VIDÉO INSTAGRAM
    ========================================= */
 .video-card {
     background: white;
     border-radius: 8px;
-    overflow: hidden; /* Empêche ce qui dépasse de sortir */
+    overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Aligne en haut */
-    min-height: 450px; /* Hauteur minimale pour que ça ressemble à une verticale */
+    align-items: flex-start;
+    min-height: 450px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     padding: 0;
 }
 
-/* Force l'iframe Instagram à s'adapter à la largeur */
 .instagram-media {
     min-width: unset !important;
     width: 100% !important;
