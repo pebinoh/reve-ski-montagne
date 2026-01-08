@@ -189,13 +189,48 @@ footer { background-color: var(--primary); color: #ecf0f1; padding: 70px 0 20px;
 /* =========================================
    UTILS (Loader, Scroll, Lightbox)
    ========================================= */
+/* =========================================
+   6. UTILS (Loader, Scroll, Lightbox)
+   ========================================= */
+/* Loader */
 #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffff; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out, visibility 0.8s; }
-.loader-content { text-align: center; }
-.loader-logo { font-family: var(--font-title); font-size: 4rem; color: var(--primary); letter-spacing: 5px; font-weight: bold; display: block; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s forwards; }
+.loader-content { text-align: center; padding: 0 20px; }
+
+/* MODIFICATION : Taille de police réduite pour faire tenir le nom entier */
+.loader-logo { 
+    font-family: var(--font-title); 
+    font-size: 2.5rem; /* Réduit de 4rem à 2.5rem */
+    color: var(--primary); 
+    letter-spacing: 2px; /* Espacement réduit légèrement */
+    font-weight: bold; 
+    display: block; 
+    margin-bottom: 20px; 
+    opacity: 0; 
+    animation: fadeUp 1s forwards; 
+}
 .loader-line { width: 0; height: 3px; background-color: var(--accent); margin: 0 auto; animation: lineGrow 1.5s ease-in-out forwards 0.5s; }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes lineGrow { to { width: 120px; } }
 .loader-hidden { opacity: 0; visibility: hidden; }
+
+/* Ajustement spécifique mobile pour le loader */
+@media (max-width: 480px) {
+    .loader-logo { font-size: 1.8rem; letter-spacing: 1px; }
+}
+
+/* Reste des utils (sans changement) */
+#backToTop { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--accent); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+#backToTop.show { opacity: 1; visibility: visible; }
+#backToTop:hover { background-color: var(--primary); transform: translateY(-5px); }
+
+.fade-in { opacity: 0; transform: translateY(30px); will-change: opacity, transform; transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+.drop-cap {
+    float: left; font-family: var(--font-title); font-size: 4.5rem; line-height: 0.7; 
+    margin-top: 10px; margin-right: 12px; color: var(--accent); font-weight: bold;
+}
 
 #backToTop { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--accent); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
 #backToTop.show { opacity: 1; visibility: visible; }
