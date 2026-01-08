@@ -1,0 +1,198 @@
+/* =========================================
+   1. RESET & VARIABLES (Palette Hivernale)
+   ========================================= */
+:root {
+    --primary: #2c3e50;    /* Bleu nuit profond (Textes, Footer) */
+    --accent: #3498db;     /* Bleu glacier (Accents vifs) */
+    --wood: #6dd5fa;       /* Remplacé par un Cyan/Bleu clair pour les boutons/hover */
+    /* Alternativement, pour une couleur plus "Chaleureuse" style soleil : --wood: #f1c40f; */
+    
+    --light: #f8fbfd;      /* Blanc bleuté très léger pour les fonds */
+    --white: #ffffff;
+    --font-main: 'Montserrat', sans-serif;
+    --font-title: 'Playfair Display', serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-main);
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. NAVIGATION & LOGO
+   ========================================= */
+nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 50px; background: white; position: fixed;
+    width: 100%; height: 80px; top: 0; z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.logo img {
+    height: 60px; width: 60px; border-radius: 50%; object-fit: cover;
+    border: 2px solid var(--accent); /* Bordure bleue */
+    transition: transform 0.3s ease; display: block;
+}
+.logo img:hover { transform: scale(1.1); }
+
+ul.nav-links { 
+    display: flex; flex-direction: row; align-items: center; gap: 30px; 
+    list-style: none; margin: 0; padding: 0;
+}
+.nav-links li { display: inline-block; }
+
+.nav-links a { 
+    text-decoration: none; color: #333; text-transform: uppercase; 
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; 
+    transition: 0.3s; position: relative;
+}
+.nav-links a::after {
+    content: ''; display: block; width: 0; height: 2px; 
+    background: var(--accent); transition: width 0.3s;
+    position: absolute; bottom: -5px; left: 0;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+
+.hamburger { display: none; font-size: 1.8rem; color: #333; cursor: pointer; }
+
+/* =========================================
+   3. HERO SECTION (Image de fond à changer)
+   ========================================= */
+.hero {
+    height: 100vh;
+    /* IMPORTANT : Mets ici le nom de ta photo principale (hero_ski.jpg) */
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('hero_ski.jpg');
+    background-attachment: fixed; background-position: center; background-size: cover;
+    display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+    position: relative;
+}
+.hero h1 { font-family: var(--font-title); font-size: 4rem; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.hero p { font-size: 1.5rem; font-weight: 300; margin-bottom: 40px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+
+.btn-scroll { 
+    border: 2px solid white; padding: 12px 35px; color: white; 
+    text-decoration: none; text-transform: uppercase; transition: all 0.3s ease;
+    position: relative; top: 0; background: rgba(255,255,255,0.1);
+}
+.btn-scroll:hover { 
+    background: white; color: var(--primary); 
+    top: -3px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+}
+
+/* =========================================
+   4. STRUCTURE & GRILLES
+   ========================================= */
+.section-padding { padding: 80px 20px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-gray { background-color: var(--light); }
+h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; text-align: center; color: var(--primary); }
+.content-text { max-width: 800px; margin: 0 auto; text-align: center; color: #555; }
+
+.services-grid, .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+/* Cartes Services */
+.service-card { 
+    background: white; text-align: center; text-decoration: none; color: #333; 
+    border-radius: 4px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; border-bottom: 3px solid transparent; 
+}
+.service-card:hover { transform: translateY(-10px); border-bottom: 3px solid var(--accent); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+.icon-box { font-size: 3rem; color: var(--accent); margin-bottom: 20px; transition: transform 0.3s; }
+.service-card:hover .icon-box { transform: scale(1.1) rotate(10deg); } /* Petite rotation fun */
+
+.service-card h3 { font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 15px; }
+.link-text { color: var(--accent); font-weight: 600; text-transform: uppercase; margin-top: auto; display: inline-block; transition: transform 0.3s ease; font-size: 0.9rem; }
+.service-card:hover .link-text { transform: translateX(5px); }
+
+/* Cartes Projets (Galerie) */
+.project-card { position: relative; display: block; overflow: hidden; height: 350px; border-radius: 4px; }
+.project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.project-card:hover img { transform: scale(1.05); }
+.overlay { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    background: linear-gradient(to top, rgba(44, 62, 80, 0.8), transparent); /* Dégradé plus subtil */
+    color: white; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 30px; align-items: center; 
+    opacity: 0; transition: 0.4s; 
+}
+.project-card:hover .overlay { opacity: 1; }
+
+/* Parallax Intermédiaire */
+.separator-parallax {
+    height: 400px;
+    /* IMPORTANT : Image panoramique ici */
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('landscape_ski.jpg');
+    background-attachment: fixed; background-position: center; background-size: cover;
+    display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+}
+.separator-content h3 { font-family: var(--font-title); font-size: 2.5rem; font-style: italic; letter-spacing: 2px; }
+
+/* =========================================
+   5. FOOTER
+   ========================================= */
+footer { background-color: var(--primary); color: #ecf0f1; padding: 70px 0 20px; margin-top: 50px; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px; }
+.footer-col h4 { font-family: var(--font-title); font-size: 1.2rem; margin-bottom: 20px; color: var(--accent); text-transform: uppercase; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { color: #bbb; text-decoration: none; transition: 0.3s; }
+.footer-links a:hover { color: white; padding-left: 5px; }
+.footer-contact p { margin-bottom: 10px; color: #bbb; font-size: 0.9rem; }
+.footer-contact i { width: 20px; color: var(--accent); margin-right: 10px; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.8rem; color: #777; }
+
+/* =========================================
+   6. UTILS (Loader, Scroll, Lightbox)
+   ========================================= */
+/* Loader */
+#loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffff; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out, visibility 0.8s; }
+.loader-content { text-align: center; }
+.loader-logo { font-family: var(--font-title); font-size: 4rem; color: var(--primary); letter-spacing: 5px; font-weight: bold; display: block; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s forwards; }
+.loader-line { width: 0; height: 3px; background-color: var(--accent); margin: 0 auto; animation: lineGrow 1.5s ease-in-out forwards 0.5s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes lineGrow { to { width: 120px; } }
+.loader-hidden { opacity: 0; visibility: hidden; }
+
+/* Retour Haut */
+#backToTop { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--accent); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+#backToTop.show { opacity: 1; visibility: visible; }
+#backToTop:hover { background-color: var(--primary); transform: translateY(-5px); }
+
+/* Animation Fade In */
+.fade-in { opacity: 0; transform: translateY(30px); will-change: opacity, transform; transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* Lettrine */
+.drop-cap {
+    float: left; font-family: var(--font-title); font-size: 4.5rem; line-height: 0.7; 
+    margin-top: 10px; margin-right: 12px; color: var(--accent); font-weight: bold;
+}
+
+/* Lightbox (si tu utilises des photos cliquables dans une future galerie détaillée) */
+.lightbox { display: none; position: fixed; z-index: 10000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); }
+.lightbox-content { margin: auto; display: block; width: 80%; max-width: 1200px; max-height: 85vh; object-fit: contain; animation: zoomIn 0.3s; }
+.lightbox-close { position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+.lightbox-close:hover { color: var(--accent); }
+@keyframes zoomIn { from {transform:scale(0.8); opacity:0;} to {transform:scale(1); opacity:1;} }
+
+/* =========================================
+   7. RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .container { padding-left: 20px; padding-right: 20px; }
+    .section-padding { padding: 50px 15px; }
+    nav { padding: 0 20px; }
+    .hamburger { display: block; }
+    .nav-links { position: absolute; top: 80px; left: 0; width: 100%; background-color: white; flex-direction: column; align-items: center; gap: 0; border-top: 1px solid #eee; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; box-shadow: 0 5px 10px rgba(0,0,0,0.05); z-index: 999; }
+    .nav-links.active { max-height: 400px; }
+    .nav-links li { width: 100%; text-align: center; padding: 20px 0; border-bottom: 1px solid #f4f4f4; }
+    
+    .hero, .separator-parallax { background-attachment: scroll; background-position: center; }
+    .hero h1 { font-size: 2.5rem; padding: 0 10px; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+}
