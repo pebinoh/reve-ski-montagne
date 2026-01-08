@@ -1,13 +1,12 @@
 /* =========================================
-   1. RESET & VARIABLES (Palette Hivernale)
+   1. RESET & VARIABLES (Palette R'Eve Ski)
    ========================================= */
 :root {
-    --primary: #2c3e50;    /* Bleu nuit profond (Textes, Footer) */
-    --accent: #3498db;     /* Bleu glacier (Accents vifs) */
-    --wood: #6dd5fa;       /* Remplacé par un Cyan/Bleu clair pour les boutons/hover */
-    /* Alternativement, pour une couleur plus "Chaleureuse" style soleil : --wood: #f1c40f; */
+    --primary: #1a252f;    /* Bleu Nuit (comme le contour du logo) */
+    --accent: #26c6da;     /* Cyan / Turquoise (comme les montagnes du logo) */
+    --wood: #81ecec;       /* Cyan clair pour les interactions douces */
     
-    --light: #f8fbfd;      /* Blanc bleuté très léger pour les fonds */
+    --light: #f0fdfa;      /* Blanc menthe très léger pour les fonds */
     --white: #ffffff;
     --font-main: 'Montserrat', sans-serif;
     --font-title: 'Playfair Display', serif;
@@ -33,7 +32,7 @@ nav {
 }
 .logo img {
     height: 60px; width: 60px; border-radius: 50%; object-fit: cover;
-    border: 2px solid var(--accent); /* Bordure bleue */
+    /* Suppression de la bordure car le logo a déjà un rond noir */
     transition: transform 0.3s ease; display: block;
 }
 .logo img:hover { transform: scale(1.1); }
@@ -64,7 +63,7 @@ ul.nav-links {
    ========================================= */
 .hero {
     height: 100vh;
-    /* IMPORTANT : Mets ici le nom de ta photo principale (hero_ski.jpg) */
+    /* IMPORTANT : Image principale */
     background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('hero_ski.jpg');
     background-attachment: fixed; background-position: center; background-size: cover;
     display: flex; align-items: center; justify-content: center; text-align: center; color: white;
@@ -95,7 +94,45 @@ h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; tex
 
 .services-grid, .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
-/* Cartes Services */
+/* =========================================
+   NOUVEAU : Section Présentation Évelyne
+   ========================================= */
+.presentation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.presentation-img img {
+    width: 100%;
+    border-radius: 10px; /* Coins légèrement arrondis */
+    box-shadow: 20px 20px 0px var(--wood); /* Effet graphique décalé */
+    object-fit: cover;
+    max-height: 500px;
+}
+
+.presentation-text h2, .presentation-text h3, .presentation-text p {
+    text-align: left; /* Alignement à gauche pour le texte */
+}
+.presentation-text h2 { margin-bottom: 10px; }
+
+.badge {
+    display: inline-block;
+    background: var(--light);
+    color: var(--primary);
+    padding: 8px 15px;
+    border: 1px solid var(--wood);
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.badge i { color: var(--accent); margin-right: 5px; }
+
+/* =========================================
+   CARTES SERVICES
+   ========================================= */
 .service-card { 
     background: white; text-align: center; text-decoration: none; color: #333; 
     border-radius: 4px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
@@ -104,28 +141,31 @@ h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; tex
 .service-card:hover { transform: translateY(-10px); border-bottom: 3px solid var(--accent); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
 .icon-box { font-size: 3rem; color: var(--accent); margin-bottom: 20px; transition: transform 0.3s; }
-.service-card:hover .icon-box { transform: scale(1.1) rotate(10deg); } /* Petite rotation fun */
+.service-card:hover .icon-box { transform: scale(1.1) rotate(10deg); }
 
 .service-card h3 { font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 15px; }
 .link-text { color: var(--accent); font-weight: 600; text-transform: uppercase; margin-top: auto; display: inline-block; transition: transform 0.3s ease; font-size: 0.9rem; }
 .service-card:hover .link-text { transform: translateX(5px); }
 
-/* Cartes Projets (Galerie) */
+/* =========================================
+   CARTES PROJETS (GALERIE)
+   ========================================= */
 .project-card { position: relative; display: block; overflow: hidden; height: 350px; border-radius: 4px; }
 .project-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 .project-card:hover img { transform: scale(1.05); }
 .overlay { 
     position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-    background: linear-gradient(to top, rgba(44, 62, 80, 0.8), transparent); /* Dégradé plus subtil */
+    background: linear-gradient(to top, rgba(26, 37, 47, 0.8), transparent); 
     color: white; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 30px; align-items: center; 
     opacity: 0; transition: 0.4s; 
 }
 .project-card:hover .overlay { opacity: 1; }
 
-/* Parallax Intermédiaire */
+/* =========================================
+   PARALLAXE
+   ========================================= */
 .separator-parallax {
     height: 400px;
-    /* IMPORTANT : Image panoramique ici */
     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('landscape_ski.jpg');
     background-attachment: fixed; background-position: center; background-size: cover;
     display: flex; align-items: center; justify-content: center; text-align: center; color: white;
@@ -133,7 +173,7 @@ h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; tex
 .separator-content h3 { font-family: var(--font-title); font-size: 2.5rem; font-style: italic; letter-spacing: 2px; }
 
 /* =========================================
-   5. FOOTER
+   FOOTER
    ========================================= */
 footer { background-color: var(--primary); color: #ecf0f1; padding: 70px 0 20px; margin-top: 50px; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px; }
@@ -147,9 +187,8 @@ footer { background-color: var(--primary); color: #ecf0f1; padding: 70px 0 20px;
 .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.8rem; color: #777; }
 
 /* =========================================
-   6. UTILS (Loader, Scroll, Lightbox)
+   UTILS (Loader, Scroll, Lightbox)
    ========================================= */
-/* Loader */
 #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffff; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out, visibility 0.8s; }
 .loader-content { text-align: center; }
 .loader-logo { font-family: var(--font-title); font-size: 4rem; color: var(--primary); letter-spacing: 5px; font-weight: bold; display: block; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s forwards; }
@@ -158,30 +197,20 @@ footer { background-color: var(--primary); color: #ecf0f1; padding: 70px 0 20px;
 @keyframes lineGrow { to { width: 120px; } }
 .loader-hidden { opacity: 0; visibility: hidden; }
 
-/* Retour Haut */
 #backToTop { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--accent); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
 #backToTop.show { opacity: 1; visibility: visible; }
 #backToTop:hover { background-color: var(--primary); transform: translateY(-5px); }
 
-/* Animation Fade In */
 .fade-in { opacity: 0; transform: translateY(30px); will-change: opacity, transform; transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-/* Lettrine */
 .drop-cap {
     float: left; font-family: var(--font-title); font-size: 4.5rem; line-height: 0.7; 
     margin-top: 10px; margin-right: 12px; color: var(--accent); font-weight: bold;
 }
 
-/* Lightbox (si tu utilises des photos cliquables dans une future galerie détaillée) */
-.lightbox { display: none; position: fixed; z-index: 10000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); }
-.lightbox-content { margin: auto; display: block; width: 80%; max-width: 1200px; max-height: 85vh; object-fit: contain; animation: zoomIn 0.3s; }
-.lightbox-close { position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
-.lightbox-close:hover { color: var(--accent); }
-@keyframes zoomIn { from {transform:scale(0.8); opacity:0;} to {transform:scale(1); opacity:1;} }
-
 /* =========================================
-   7. RESPONSIVE
+   RESPONSIVE
    ========================================= */
 @media (max-width: 768px) {
     .container { padding-left: 20px; padding-right: 20px; }
@@ -194,5 +223,12 @@ footer { background-color: var(--primary); color: #ecf0f1; padding: 70px 0 20px;
     
     .hero, .separator-parallax { background-attachment: scroll; background-position: center; }
     .hero h1 { font-size: 2.5rem; padding: 0 10px; }
+    
+    /* Responsive Présentation */
+    .presentation-grid { grid-template-columns: 1fr; gap: 30px; }
+    .presentation-img img { max-height: 400px; margin-bottom: 20px; box-shadow: 10px 10px 0px var(--wood); }
+    .presentation-text { text-align: center; }
+    .presentation-text h2, .presentation-text h3, .presentation-text p { text-align: center; }
+    
     .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
 }
