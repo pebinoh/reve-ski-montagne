@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyne Guide de Ski | Sainte-Foy-Tarentaise & Haute-Tarentaise</title>
+    <meta name="description" content="Lyne, guide indépendante de ski et snowboard à Sainte-Foy-Tarentaise. Freeride, randonnée à ski et héliski en Savoie.">
+    <link rel="icon" type="image/jpeg" href="logo_lyne.jpg">
+    
+    <meta property="og:title" content="Lyne - Guide Ski & Snowboard Sainte-Foy">
+    <meta property="og:description" content="Découvrez le hors-piste et la rando en Haute-Tarentaise avec une guide locale.">
+    <meta property="og:image" content="https://ton-github-user.github.io/repo/hero_ski.jpg"> 
+    <meta property="og:url" content="https://ton-github-user.github.io/repo/">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": "Lyne Guide Ski",
+      "image": "https://ton-github-user.github.io/repo/logo_lyne.jpg",
+      "@id": "",
+      "url": "https://ton-github-user.github.io/repo/",
+      "telephone": "+33 6 XX XX XX XX",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sainte-Foy-Tarentaise",
+        "postalCode": "73640",
+        "addressCountry": "FR"
+      },
+      "priceRange": "€€"
+    }
+    </script>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-content">
+            <span class="loader-logo">LYNE</span>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo_lyne.jpg" alt="Lyne Guide Ski">
+            </a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#accueil" onclick="toggleMenu()">Accueil</a></li>
+            <li><a href="#philosophie" onclick="toggleMenu()">Philosophie</a></li>
+            <li><a href="#activites" onclick="toggleMenu()">Activités</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="accueil" class="hero">
+        <div class="hero-content fade-in">
+            <h1>Lyne Guide</h1>
+            <p>Ski, Snowboard & Aventure à Sainte-Foy-Tarentaise</p>
+            <a href="#activites" class="btn-scroll">Explorer mes offres</a>
+        </div>
+    </header>
+
+    <section id="philosophie" class="container section-padding">
+        <div class="content-text fade-in">
+            <h2>L'Esprit de la Montagne</h2>
+            <p><span class="drop-cap">V</span>ivre la montagne autrement, loin des foules.</p>
+            <p>Basée à Sainte-Foy-Tarentaise, je vous guide à travers les itinéraires secrets de la vallée. Que vous cherchiez la poudreuse vierge ou une belle randonnée contemplative, mon objectif est de construire avec vous une aventure sur mesure, en toute sécurité.</p>
+        </div>
+    </section>
+
+    <section id="activites" class="section-gray section-padding">
+        <div class="container">
+            <h2>Mes Activités</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="icon-box"><i class="fas fa-snowflake"></i></div> <h3>Freeride & Hors-Piste</h3>
+                    <p>Découvrez les faces cachées de Sainte-Foy, Val d'Isère et Tignes. La trace parfaite vous attend.</p>
+                    <span class="link-text">En savoir plus →</span>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="icon-box"><i class="fas fa-mountain"></i></div> <h3>Ski de Randonnée</h3>
+                    <p>Échappez aux remontées mécaniques. Le calme, l'effort et des paysages à couper le souffle.</p>
+                    <span class="link-text">En savoir plus →</span>
+                </div>
+                 <div class="service-card fade-in">
+                    <div class="icon-box"><i class="fas fa-helicopter"></i></div> <h3>Héliski & Italie</h3>
+                    <p>Déposes en hélicoptère à la frontière italienne pour des descentes inoubliables.</p>
+                    <span class="link-text">En savoir plus →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="separator-parallax">
+        <div class="separator-content fade-in">
+            <h3>"La montagne ne se consomme pas, elle se vit."</h3>
+        </div>
+    </section>
+
+    <section id="galerie" class="container section-padding">
+        <div class="content-text" style="margin-bottom: 40px;">
+            <h2>Moments Partagés</h2>
+            <p>Quelques instants volés lors de nos sorties.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="project-card fade-in">
+                <img src="ski_action_1.jpg" alt="Freeride Poudreuse" loading="lazy">
+                <div class="overlay">
+                    <h3>Poudreuse Profonde</h3>
+                    <p>Secteur Fogliettaz</p>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="ski_rando_1.jpg" alt="Montée en peau de phoque" loading="lazy">
+                <div class="overlay">
+                    <h3>Rando au Monal</h3>
+                    <p>Secteur Classé</p>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="view_summit.jpg" alt="Vue sommet" loading="lazy">
+                <div class="overlay">
+                    <h3>Vue Sommitale</h3>
+                    <p>Mont Pourri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-gray section-padding" style="text-align:center;">
+        <div class="container">
+            <h2>Prêt à chausser les skis ?</h2>
+            <p style="margin-bottom:30px;">Contactez-moi pour discuter de votre projet ou réserver une journée.</p>
+            <a href="mailto:contact@lyne-guide.com" class="btn-scroll" style="background:var(--wood); border-color:var(--wood);">Me contacter</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Lyne Guide</h4>
+                    <p style="color:#bbb; font-size:0.9rem; line-height:1.6;">
+                        Guide indépendante diplômée d'État. Passionnée par la transmission et la sécurité en montagne.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Liens Rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#philosophie">Philosophie</a></li>
+                        <li><a href="#activites">Activités</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Sainte-Foy-Tarentaise, 73640</p>
+                    <p><i class="fas fa-phone"></i> +33 6 XX XX XX XX</p>
+                    <p><i class="fas fa-envelope"></i> contact@lyne-guide.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Lyne Guide Ski. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" id="backToTop" title="Retour en haut"><i class="fas fa-arrow-up"></i></a>
+    <script src="script.js"></script>
+</body>
+</html>
