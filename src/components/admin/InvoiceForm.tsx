@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import type { Booking } from "@prisma/client";
+import type { Booking, Client } from "@prisma/client";
 import { createInvoice } from "@/app/admin/invoices/actions";
 
 const inputClasses =
@@ -18,8 +18,18 @@ function defaultDueDate() {
   return toDateInputValue(date);
 }
 
-export default function InvoiceForm({ booking }: { booking: Booking | null }) {
+export default function InvoiceForm({
+  booking,
+  client,
+}: {
+  booking: Booking | null;
+  client?: Client | null;
+}) {
   const [error, formAction, isPending] = useActionState(createInvoice, null);
+
+  const name = client?.name ?? booking?.name ?? "";
+  const email = client?.email ?? booking?.email ?? "";
+  const address = client?.address ?? "";
 
   return (
     <form
@@ -40,7 +50,7 @@ export default function InvoiceForm({ booking }: { booking: Booking | null }) {
           id="clientName"
           name="clientName"
           type="text"
-          defaultValue={booking?.name ?? ""}
+          defaultValue={name}
           className={inputClasses}
         />
       </div>
@@ -53,7 +63,7 @@ export default function InvoiceForm({ booking }: { booking: Booking | null }) {
           id="clientEmail"
           name="clientEmail"
           type="email"
-          defaultValue={booking?.email ?? ""}
+          defaultValue={email}
           className={inputClasses}
         />
       </div>
@@ -66,6 +76,7 @@ export default function InvoiceForm({ booking }: { booking: Booking | null }) {
           id="clientAddress"
           name="clientAddress"
           type="text"
+          defaultValue={address}
           placeholder="Numéro, rue, code postal, ville"
           className={inputClasses}
         />

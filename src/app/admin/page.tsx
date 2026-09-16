@@ -40,10 +40,16 @@ export default async function AdminDashboardPage({
         <div className="flex items-center gap-4">
           <Logo />
           <h1 className="hidden font-title text-lg italic text-primary sm:block">
-            Fiches clients
+            Réservations
           </h1>
         </div>
         <div className="flex items-center gap-5">
+          <Link
+            href="/admin/clients"
+            className="text-sm font-semibold text-[#666] hover:text-primary"
+          >
+            Clients
+          </Link>
           <Link
             href="/admin/invoices"
             className="text-sm font-semibold text-[#666] hover:text-primary"

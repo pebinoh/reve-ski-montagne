@@ -7,6 +7,7 @@ import { invoiceSchema } from "@/lib/invoice-schema";
 import { nextInvoiceNumber } from "@/lib/invoice-numbering";
 import { generateInvoicePdf } from "@/lib/invoice-pdf";
 import { sendInvoiceEmail } from "@/lib/email";
+import { upsertClient } from "@/lib/client";
 
 export async function createInvoice(_prevState: string | null, formData: FormData) {
   const raw = Object.fromEntries(formData.entries());
@@ -37,6 +38,12 @@ export async function createInvoice(_prevState: string | null, formData: FormDat
   const year = new Date().getFullYear();
   const number = await nextInvoiceNumber(year);
 
+  const client = await upsertClient({
+    name: data.clientName,
+    email: data.clientEmail,
+    address: data.clientAddress,
+  });
+
   const invoice = await prisma.invoice.create({
     data: {
       number,
@@ -54,6 +61,7 @@ export async function createInvoice(_prevState: string | null, formData: FormDat
       totalTTC,
       paymentTerms: profile.paymentTerms,
       bookingId: data.bookingId || null,
+      clientId: client.id,
     },
   });
 

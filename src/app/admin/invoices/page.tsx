@@ -41,6 +41,12 @@ export default async function InvoicesPage({
         <h1 className="font-title text-2xl text-primary">Factures</h1>
         <div className="flex gap-3">
           <Link
+            href="/admin/clients"
+            className="rounded-full border border-[#ddd] px-5 py-2 text-sm font-semibold text-primary"
+          >
+            Clients
+          </Link>
+          <Link
             href="/admin/settings"
             className="rounded-full border border-[#ddd] px-5 py-2 text-sm font-semibold text-primary"
           >

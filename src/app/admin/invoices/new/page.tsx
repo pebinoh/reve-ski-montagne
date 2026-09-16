@@ -5,20 +5,28 @@ import InvoiceForm from "@/components/admin/InvoiceForm";
 export default async function NewInvoicePage({
   searchParams,
 }: {
-  searchParams: Promise<{ bookingId?: string }>;
+  searchParams: Promise<{ bookingId?: string; clientId?: string }>;
 }) {
-  const { bookingId } = await searchParams;
+  const { bookingId, clientId } = await searchParams;
 
-  const [profile, bookings, selectedBooking] = await Promise.all([
-    prisma.businessProfile.findUnique({ where: { id: "singleton" } }),
-    prisma.booking.findMany({
-      orderBy: { createdAt: "desc" },
-      take: 50,
-    }),
-    bookingId
-      ? prisma.booking.findUnique({ where: { id: bookingId } })
-      : Promise.resolve(null),
-  ]);
+  const [profile, bookings, clients, selectedBooking, selectedClient] =
+    await Promise.all([
+      prisma.businessProfile.findUnique({ where: { id: "singleton" } }),
+      prisma.booking.findMany({
+        orderBy: { createdAt: "desc" },
+        take: 50,
+      }),
+      prisma.client.findMany({
+        orderBy: { updatedAt: "desc" },
+        take: 100,
+      }),
+      bookingId
+        ? prisma.booking.findUnique({ where: { id: bookingId } })
+        : Promise.resolve(null),
+      clientId
+        ? prisma.client.findUnique({ where: { id: clientId } })
+        : Promise.resolve(null),
+    ]);
 
   if (!profile) {
     return (
@@ -46,21 +54,50 @@ export default async function NewInvoicePage({
         </Link>
       </div>
 
-      {bookings.length > 0 && (
-        <form
-          method="get"
-          className="mb-8 flex flex-col gap-3 rounded-xl bg-white p-5 shadow-sm sm:flex-row sm:items-end"
-        >
-          <div className="flex-1">
-            <label className="mb-1 block text-sm font-semibold text-primary">
-              Pré-remplir depuis une fiche client
+      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {clients.length > 0 && (
+          <form
+            method="get"
+            className="flex flex-col gap-3 rounded-xl bg-white p-5 shadow-sm"
+          >
+            <label className="text-sm font-semibold text-primary">
+              Client déjà enregistré
+            </label>
+            <select
+              name="clientId"
+              defaultValue={clientId ?? ""}
+              className="w-full rounded-lg border border-[#ddd] px-3 py-2 text-sm outline-none focus:border-accent"
+            >
+              <option value="">— Choisir —</option>
+              {clients.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name} ({c.email})
+                </option>
+              ))}
+            </select>
+            <button
+              type="submit"
+              className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white"
+            >
+              Charger ce client
+            </button>
+          </form>
+        )}
+
+        {bookings.length > 0 && (
+          <form
+            method="get"
+            className="flex flex-col gap-3 rounded-xl bg-white p-5 shadow-sm"
+          >
+            <label className="text-sm font-semibold text-primary">
+              Depuis une réservation récente
             </label>
             <select
               name="bookingId"
               defaultValue={bookingId ?? ""}
               className="w-full rounded-lg border border-[#ddd] px-3 py-2 text-sm outline-none focus:border-accent"
             >
-              <option value="">— Facture libre —</option>
+              <option value="">— Choisir —</option>
               {bookings.map((b) => (
                 <option key={b.id} value={b.id}>
                   {b.name} — {b.activityType} (
@@ -68,17 +105,17 @@ export default async function NewInvoicePage({
                 </option>
               ))}
             </select>
-          </div>
-          <button
-            type="submit"
-            className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white"
-          >
-            Charger
-          </button>
-        </form>
-      )}
+            <button
+              type="submit"
+              className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white"
+            >
+              Charger cette réservation
+            </button>
+          </form>
+        )}
+      </div>
 
-      <InvoiceForm booking={selectedBooking} />
+      <InvoiceForm booking={selectedBooking} client={selectedClient} />
     </main>
   );
 }

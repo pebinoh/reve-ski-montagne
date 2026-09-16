@@ -7,6 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Carnet de clients, alimenté automatiquement par les réservations et les
+// factures. Indépendant des deux : un client existe dès la première
+// interaction, réservation ou facture, et reste réutilisable ensuite.
+model Client {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name    String
+  email   String  @unique
+  phone   String?
+  address String?
+
+  bookings Booking[]
+  invoices Invoice[]
+}
+
 enum BookingStatus {
   NOUVELLE
   CONFIRMEE
@@ -33,6 +50,9 @@ model Booking {
 
   // Intégration Google Calendar
   googleEventId  String?
+
+  client   Client? @relation(fields: [clientId], references: [id])
+  clientId String?
 
   invoices Invoice[]
 }
@@ -101,6 +121,9 @@ model Invoice {
 
   booking   Booking? @relation(fields: [bookingId], references: [id])
   bookingId String?
+
+  client   Client? @relation(fields: [clientId], references: [id])
+  clientId String?
 
   sentAt DateTime?
 }
