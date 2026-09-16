@@ -33,6 +33,8 @@ model Booking {
 
   // Intégration Google Calendar
   googleEventId  String?
+
+  invoices Invoice[]
 }
 
 // Ligne unique stockant les jetons OAuth du compte Google de la monitrice.
@@ -41,4 +43,64 @@ model CalendarConnection {
   email        String?
   refreshToken String
   updatedAt    DateTime @updatedAt
+}
+
+// Ligne unique : informations légales de la monitrice, utilisées sur les factures.
+model BusinessProfile {
+  id           String   @id @default("singleton")
+  legalName    String
+  address      String
+  siret        String
+  legalForm    String // ex. "Entreprise Individuelle (micro-entreprise)"
+  email        String
+  phone        String?
+  vatExempt    Boolean  @default(true) // franchise en base (art. 293 B du CGI)
+  vatRate      Float    @default(0) // utilisé seulement si vatExempt = false
+  iban         String?
+  paymentTerms String   @default("Paiement à réception de facture. Moyens acceptés : virement, espèces, chèque.")
+  updatedAt    DateTime @updatedAt
+}
+
+// Compteur séquentiel par année civile pour la numérotation légale des factures.
+model InvoiceCounter {
+  year        Int @id
+  lastNumber  Int @default(0)
+}
+
+enum InvoiceStatus {
+  EMISE
+  PAYEE
+  ANNULEE
+}
+
+model Invoice {
+  id        String   @id @default(cuid())
+  number    String   @unique // ex. "FACT-2026-0001"
+  createdAt DateTime @default(now())
+
+  issueDate   DateTime      @default(now())
+  serviceDate DateTime
+  dueDate     DateTime
+  status      InvoiceStatus @default(EMISE)
+
+  // Client (recopié au moment de l'émission — ne doit pas changer rétroactivement)
+  clientName    String
+  clientAddress String
+  clientEmail   String
+
+  // Prestation
+  description String
+  quantity    Float
+  unitPrice   Decimal @db.Decimal(10, 2)
+  vatRate     Float   @default(0)
+  totalHT     Decimal @db.Decimal(10, 2)
+  totalTVA    Decimal @db.Decimal(10, 2)
+  totalTTC    Decimal @db.Decimal(10, 2)
+
+  paymentTerms String
+
+  booking   Booking? @relation(fields: [bookingId], references: [id])
+  bookingId String?
+
+  sentAt DateTime?
 }

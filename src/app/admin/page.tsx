@@ -49,14 +49,28 @@ export default async function AdminDashboardPage({
             Fiches clients — R&apos;Eve Ski Montagne
           </h1>
         </div>
-        <form action={logout}>
-          <button
-            type="submit"
+        <div className="flex items-center gap-5">
+          <Link
+            href="/admin/invoices"
             className="text-sm font-semibold text-[#666] hover:text-primary"
           >
-            Déconnexion
-          </button>
-        </form>
+            Factures
+          </Link>
+          <Link
+            href="/admin/settings"
+            className="text-sm font-semibold text-[#666] hover:text-primary"
+          >
+            Réglages
+          </Link>
+          <form action={logout}>
+            <button
+              type="submit"
+              className="text-sm font-semibold text-[#666] hover:text-primary"
+            >
+              Déconnexion
+            </button>
+          </form>
+        </div>
       </header>
 
       <div className="mx-auto max-w-6xl px-6 py-10">
@@ -127,6 +141,7 @@ export default async function AdminDashboardPage({
                   <th className="px-4 py-3">Message</th>
                   <th className="px-4 py-3">Statut</th>
                   <th className="px-4 py-3">Calendrier</th>
+                  <th className="px-4 py-3">Facture</th>
                 </tr>
               </thead>
               <tbody>
@@ -189,6 +204,14 @@ export default async function AdminDashboardPage({
                           Télécharger .ics
                         </a>
                       </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <Link
+                        href={`/admin/invoices/new?bookingId=${booking.id}`}
+                        className="text-xs font-semibold text-accent hover:underline"
+                      >
+                        Créer une facture
+                      </Link>
                     </td>
                   </tr>
                 ))}
