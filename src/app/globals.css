@@ -1,12 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1a252f;
-  --color-accent: #26c6da;
-  --color-wood: #81ecec;
-  --color-light: #f0fdfa;
-  --font-title: var(--font-playfair), serif;
-  --font-body: var(--font-montserrat), sans-serif;
+  /* Encre — texte principal, fonds sombres */
+  --color-ink: #17191b;
+  --color-ink-soft: #2b2e31;
+
+  /* Crème / pierre — fonds clairs, cartes */
+  --color-cream: #f6f3ec;
+  --color-stone: #ece6d9;
+
+  /* Accent — ambre/terracotta, sobre et chaud */
+  --color-accent: #b5622e;
+  --color-accent-soft: #d99a6c;
+
+  /* Alias conservés pour compat (progressivement retirés) */
+  --color-primary: var(--color-ink);
+  --color-light: var(--color-cream);
+
+  --font-title: var(--font-fraunces), serif;
+  --font-body: var(--font-inter), sans-serif;
 }
 
 html {
@@ -15,19 +27,20 @@ html {
 }
 
 body {
-  font-family: var(--font-montserrat), sans-serif;
-  background-color: #ffffff;
-  color: #333;
+  font-family: var(--font-inter), sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
   overflow-x: hidden;
 }
 
 .drop-cap::first-letter {
   float: left;
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-fraunces), serif;
+  font-style: italic;
   font-size: 4rem;
   line-height: 0.8;
   margin-top: 5px;
   margin-right: 15px;
   color: var(--color-accent);
-  font-weight: bold;
+  font-weight: 500;
 }

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CalendarCheck2, CalendarPlus } from "lucide-react";
 import { prisma } from "@/lib/prisma";
@@ -6,6 +5,7 @@ import { getCalendarConnection } from "@/lib/google-calendar";
 import { logout, disconnectGoogleCalendar } from "./actions";
 import BookingStatusSelect from "@/components/admin/BookingStatusSelect";
 import CreateEventButton from "@/components/admin/CreateEventButton";
+import Logo from "@/components/Logo";
 
 export const dynamic = "force-dynamic";
 
@@ -37,16 +37,10 @@ export default async function AdminDashboardPage({
   return (
     <main className="min-h-screen bg-light">
       <header className="flex items-center justify-between bg-white px-6 py-4 shadow-sm">
-        <div className="flex items-center gap-3">
-          <Image
-            src="/images/logo_reve.png"
-            alt="Logo R'Eve Ski Montagne"
-            width={40}
-            height={40}
-            className="h-10 w-10 rounded-full object-cover"
-          />
-          <h1 className="font-title text-lg text-primary">
-            Fiches clients — R&apos;Eve Ski Montagne
+        <div className="flex items-center gap-4">
+          <Logo />
+          <h1 className="hidden font-title text-lg italic text-primary sm:block">
+            Fiches clients
           </h1>
         </div>
         <div className="flex items-center gap-5">

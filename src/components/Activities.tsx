@@ -1,21 +1,21 @@
-import { Snowflake, Mountain, Route } from "lucide-react";
+import Image from "next/image";
 import FadeIn from "./FadeIn";
 
 const activities = [
   {
-    icon: Snowflake,
+    index: "01",
     image: "/images/ski_rando_1.jpg",
     title: "Freeride & Hors-Piste",
     text: "Découvrez les faces cachées de Sainte-Foy. La trace parfaite vous attend dans la poudreuse.",
   },
   {
-    icon: Mountain,
+    index: "02",
     image: "/images/ski_action_1.jpg",
     title: "Ski de Randonnée",
     text: "Échappez aux remontées mécaniques. Le calme, l'effort et des paysages à couper le souffle.",
   },
   {
-    icon: Route,
+    index: "03",
     image: "/images/itinerance.jpg",
     title: "Séjour en Itinérance",
     text: "L'aventure sur plusieurs jours, de refuge en refuge. Une immersion totale pour déconnecter.",
@@ -24,34 +24,46 @@ const activities = [
 
 export default function Activities() {
   return (
-    <section id="activites" className="mx-auto max-w-[1100px] px-5 py-24">
-      <h2 className="mb-10 text-center font-title text-3xl text-primary md:text-4xl">
-        Mes Activités
-      </h2>
-      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        {activities.map((activity, i) => (
-          <FadeIn key={activity.title} delay={i * 0.1}>
-            <div
-              className="group relative flex min-h-[420px] flex-col items-center justify-center overflow-hidden rounded-xl bg-cover bg-center p-10 text-center shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
-              style={{ backgroundImage: `url('${activity.image}')` }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/80 transition-all duration-500 group-hover:from-accent/20 group-hover:to-primary/90" />
-              <div className="relative z-10 flex flex-col items-center">
-                <activity.icon
-                  size={48}
-                  className="mb-6 text-wood transition-transform duration-300 group-hover:scale-110"
-                />
-                <h3 className="mb-4 font-title text-2xl text-white">
-                  {activity.title}
-                </h3>
-                <p className="mb-6 text-white/90">{activity.text}</p>
-                <span className="mt-auto border-b border-white/50 pb-1 text-xs font-semibold uppercase tracking-[2px] text-white">
-                  En savoir plus →
+    <section id="activites" className="bg-cream px-6 py-28 md:px-12 md:py-36">
+      <div className="mx-auto max-w-6xl">
+        <FadeIn>
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-accent">
+            Activités
+          </p>
+          <h2 className="mb-16 font-title text-4xl leading-tight font-light text-ink italic md:text-5xl">
+            Mes terrains de jeu
+          </h2>
+        </FadeIn>
+
+        <div className="border-t border-ink/10">
+          {activities.map((activity, i) => (
+            <FadeIn key={activity.title} delay={i * 0.08}>
+              <div className="group grid grid-cols-1 items-center gap-8 border-b border-ink/10 py-10 md:grid-cols-[80px_1.2fr_1.6fr] md:gap-12">
+                <span className="font-title text-2xl italic text-ink/30">
+                  {activity.index}
                 </span>
+
+                <div className="relative aspect-[16/10] w-full overflow-hidden md:aspect-[4/3]">
+                  <Image
+                    src={activity.image}
+                    alt={activity.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+
+                <div>
+                  <h3 className="mb-3 font-title text-2xl font-light text-ink italic md:text-3xl">
+                    {activity.title}
+                  </h3>
+                  <p className="max-w-md text-base leading-relaxed text-ink/65">
+                    {activity.text}
+                  </p>
+                </div>
               </div>
-            </div>
-          </FadeIn>
-        ))}
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );

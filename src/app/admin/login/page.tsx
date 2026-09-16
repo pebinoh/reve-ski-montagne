@@ -1,24 +1,18 @@
 "use client";
 
 import { useActionState } from "react";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import { login } from "../actions";
 
 export default function AdminLoginPage() {
   const [error, formAction, isPending] = useActionState(login, null);
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-primary px-5">
-      <div className="w-full max-w-sm rounded-2xl bg-white p-10 shadow-2xl">
-        <div className="mb-8 flex flex-col items-center">
-          <Image
-            src="/images/logo_reve.png"
-            alt="Logo R'Eve Ski Montagne"
-            width={64}
-            height={64}
-            className="mb-4 h-16 w-16 rounded-full object-cover"
-          />
-          <h1 className="font-title text-xl text-primary">Espace privé</h1>
+    <main className="flex min-h-screen items-center justify-center bg-ink px-5">
+      <div className="w-full max-w-sm rounded-2xl bg-cream p-10 shadow-2xl">
+        <div className="mb-8 flex flex-col items-center gap-6">
+          <Logo />
+          <h1 className="font-title text-xl italic text-ink">Espace privé</h1>
         </div>
 
         <form action={formAction}>

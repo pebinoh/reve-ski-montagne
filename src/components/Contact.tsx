@@ -3,26 +3,29 @@ import FadeIn from "./FadeIn";
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-light py-24 text-center">
-      <div className="mx-auto max-w-[1100px] px-5">
+    <section id="contact" className="bg-ink px-6 py-28 text-center text-cream md:px-12 md:py-36">
+      <div className="mx-auto max-w-3xl">
         <FadeIn>
-          <h2 className="mb-4 font-title text-3xl text-primary md:text-4xl">
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-accent-soft">
+            Envie de partir ?
+          </p>
+          <h2 className="mb-8 font-title text-4xl leading-tight font-light italic md:text-5xl">
             Prêt à chausser les skis ?
           </h2>
-          <p className="mb-8 text-[#555]">
+          <p className="mx-auto mb-12 max-w-xl text-base leading-relaxed text-cream/65">
             Faites votre demande de réservation ou contactez-moi directement
             pour discuter de votre projet.
           </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <Link
               href="/reservation"
-              className="rounded-full border border-accent bg-accent px-10 py-4 text-sm uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="rounded-full bg-cream px-9 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
             >
               Réserver une sortie
             </Link>
             <a
               href="mailto:contact@reve-ski.com"
-              className="rounded-full border border-primary px-10 py-4 text-sm uppercase tracking-wider text-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white"
+              className="rounded-full border border-cream/30 px-9 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-cream transition-all duration-300 hover:-translate-y-0.5 hover:border-cream"
             >
               Me contacter
             </a>

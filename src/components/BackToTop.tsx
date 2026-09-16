@@ -8,7 +8,7 @@ export default function BackToTop() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 300);
+    const onScroll = () => setShow(window.scrollY > 400);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -22,9 +22,9 @@ export default function BackToTop() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
-          className="fixed bottom-8 right-8 z-[999] flex h-11 w-11 items-center justify-center rounded-full bg-white text-primary shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-colors hover:bg-accent hover:text-white"
+          className="fixed bottom-8 right-8 z-[999] flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 bg-cream text-ink transition-colors hover:border-ink hover:bg-ink hover:text-cream"
         >
-          <ArrowUp size={18} />
+          <ArrowUp size={16} />
         </motion.a>
       )}
     </AnimatePresence>

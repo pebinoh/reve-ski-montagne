@@ -1,58 +1,56 @@
 import Image from "next/image";
-import { Check } from "lucide-react";
 import FadeIn from "./FadeIn";
 
 export default function Presentation() {
   return (
-    <section id="presentation" className="bg-light py-24">
-      <div className="mx-auto max-w-[1100px] px-5">
-        <div className="grid grid-cols-1 items-center gap-14 md:grid-cols-2">
-          <FadeIn>
-            <div className="mx-auto max-w-[420px] md:max-w-none">
-              <Image
-                src="/images/portrait_evelyne.jpg"
-                alt="Portrait Évelyne, guide de ski"
-                width={600}
-                height={700}
-                className="h-auto max-h-[350px] w-full rounded-xl object-cover shadow-[10px_10px_0px_var(--color-wood)] md:max-h-[500px] md:shadow-[20px_20px_0px_var(--color-wood)]"
-              />
-            </div>
-          </FadeIn>
+    <section id="presentation" className="bg-stone px-6 py-28 md:px-12 md:py-36">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 md:grid-cols-[0.85fr_1fr]">
+        <FadeIn>
+          <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <Image
+              src="/images/portrait_evelyne.jpg"
+              alt="Portrait Évelyne, guide de ski"
+              fill
+              className="object-cover grayscale-[15%]"
+            />
+          </div>
+        </FadeIn>
 
-          <FadeIn delay={0.15} className="text-center md:text-left">
-            <h2 className="mb-4 text-center font-title text-3xl text-primary md:text-left md:text-4xl">
-              Qui suis-je ?
-            </h2>
-            <h3 className="mb-5 font-title text-xl text-accent">
-              Évelyne, votre guide passionnée
-            </h3>
-            <p className="text-[#555]">
-              Amoureuse de la montagne et de ski, j&apos;ai fait de ma passion
-              mon métier. Installée au cœur de la Tarentaise, je connais
-              chaque recoin de Sainte-Foy et navigue sur la Rosière, Tignes et
-              Val d&apos;Isère.
+        <FadeIn delay={0.15}>
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-accent">
+            Qui suis-je
+          </p>
+          <h2 className="mb-8 font-title text-4xl leading-tight font-light text-ink italic md:text-5xl">
+            Évelyne, votre guide passionnée
+          </h2>
+
+          <div className="max-w-xl space-y-5 text-base leading-relaxed text-ink/70">
+            <p>
+              Amoureuse de la montagne et de ski, j&apos;ai fait de ma
+              passion mon métier. Installée au cœur de la Tarentaise, je
+              connais chaque recoin de Sainte-Foy et navigue sur la Rosière,
+              Tignes et Val d&apos;Isère.
             </p>
-            <p className="mt-4 text-[#555]">
-              Mon approche ? <strong>Sécurité, Plaisir et Partage.</strong>
+            <p className="font-medium text-ink">
+              Mon approche : sécurité, plaisir et partage.
             </p>
-            <p className="mt-4 text-[#555]">
+            <p>
               Que vous soyez débutant en hors-piste ou expert en quête de
               pentes raides, je m&apos;adapte à votre niveau et vos envies
               pour transformer votre journée de ski en un souvenir
               inoubliable.
             </p>
+          </div>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#eee] bg-white px-5 py-2 text-sm font-semibold text-primary shadow-[0_2px_10px_rgba(0,0,0,0.03)]">
-                <Check size={16} className="text-accent" /> Diplômée
-                d&apos;État
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#eee] bg-white px-5 py-2 text-sm font-semibold text-primary shadow-[0_2px_10px_rgba(0,0,0,0.03)]">
-                <Check size={16} className="text-accent" /> Guide Locale
-              </span>
-            </div>
-          </FadeIn>
-        </div>
+          <div className="mt-10 flex flex-wrap gap-x-10 gap-y-4 border-t border-ink/10 pt-8">
+            <span className="text-sm font-medium tracking-wide text-ink">
+              Diplômée d&apos;État
+            </span>
+            <span className="text-sm font-medium tracking-wide text-ink">
+              Guide locale
+            </span>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

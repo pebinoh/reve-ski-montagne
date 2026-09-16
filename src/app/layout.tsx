@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Montserrat, Playfair_Display } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
+  weight: ["300", "400", "500", "600"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "R'Eve Ski Montagne avec Évelyne. Guide de ski, snowboard et hors-piste à Sainte-Foy et Haute-Tarentaise.",
   icons: {
-    icon: "/images/logo_reve.png",
+    icon: "/icon.svg",
   },
   openGraph: {
     title: "R'Eve Ski Montagne",
@@ -35,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className={`${montserrat.variable} ${playfair.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="min-h-screen antialiased">
         <script
           type="application/ld+json"
@@ -44,7 +45,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "SportsActivityLocation",
               name: "R'Eve Ski Montagne",
-              image: "/images/logo_reve.png",
+              image: "/icon.svg",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Sainte-Foy-Tarentaise",
