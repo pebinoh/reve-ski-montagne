@@ -31,8 +31,12 @@ export default function InvoiceActions({
           startTransition(async () => {
             try {
               await sendInvoice(invoiceId);
-            } catch {
-              setError("Échec de l'envoi (vérifier la config email).");
+            } catch (err) {
+              setError(
+                err instanceof Error
+                  ? err.message
+                  : "Échec de l'envoi (vérifier la config email).",
+              );
             }
           });
         }}

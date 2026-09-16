@@ -22,8 +22,8 @@ export async function sendInvoiceEmail(
     throw new Error("RESEND_FROM_EMAIL n'est pas configuré.");
   }
 
-  await resend.emails.send({
-    from: `${profile.legalName} <${from}>`,
+  const { error } = await resend.emails.send({
+    from: `"${profile.legalName.replace(/"/g, "")}" <${from}>`,
     to: invoice.clientEmail,
     replyTo: profile.email,
     subject: `Facture ${invoice.number} — ${profile.legalName}`,
@@ -35,4 +35,8 @@ export async function sendInvoiceEmail(
       },
     ],
   });
+
+  if (error) {
+    throw new Error(error.message ?? "Échec de l'envoi de l'email.");
+  }
 }
