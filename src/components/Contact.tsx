@@ -1,3 +1,4 @@
+import Link from "next/link";
 import FadeIn from "./FadeIn";
 
 export default function Contact() {
@@ -9,15 +10,23 @@ export default function Contact() {
             Prêt à chausser les skis ?
           </h2>
           <p className="mb-8 text-[#555]">
-            Contactez-moi pour discuter de votre projet ou réserver une
-            journée.
+            Faites votre demande de réservation ou contactez-moi directement
+            pour discuter de votre projet.
           </p>
-          <a
-            href="mailto:contact@reve-ski.com"
-            className="rounded-full border border-accent bg-accent px-10 py-4 text-sm uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-          >
-            Me contacter
-          </a>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/reservation"
+              className="rounded-full border border-accent bg-accent px-10 py-4 text-sm uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              Réserver une sortie
+            </Link>
+            <a
+              href="mailto:contact@reve-ski.com"
+              className="rounded-full border border-primary px-10 py-4 text-sm uppercase tracking-wider text-primary transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-white"
+            >
+              Me contacter
+            </a>
+          </div>
         </FadeIn>
       </div>
     </section>
