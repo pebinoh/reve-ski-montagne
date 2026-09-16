@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -30,4 +30,15 @@ model Booking {
   groupSize      Int
   level          String
   message        String?
+
+  // Intégration Google Calendar
+  googleEventId  String?
+}
+
+// Ligne unique stockant les jetons OAuth du compte Google de la monitrice.
+model CalendarConnection {
+  id           String   @id @default("singleton")
+  email        String?
+  refreshToken String
+  updatedAt    DateTime @updatedAt
 }

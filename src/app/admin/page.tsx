@@ -1,7 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
+import { CalendarCheck2, CalendarPlus } from "lucide-react";
 import { prisma } from "@/lib/prisma";
-import { logout } from "./actions";
+import { getCalendarConnection } from "@/lib/google-calendar";
+import { logout, disconnectGoogleCalendar } from "./actions";
 import BookingStatusSelect from "@/components/admin/BookingStatusSelect";
+import CreateEventButton from "@/components/admin/CreateEventButton";
 
 export const dynamic = "force-dynamic";
 
@@ -19,10 +23,16 @@ function formatDate(date: Date) {
   }).format(date);
 }
 
-export default async function AdminDashboardPage() {
-  const bookings = await prisma.booking.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+export default async function AdminDashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ calendarConnected?: string; calendarError?: string }>;
+}) {
+  const [bookings, calendarConnection, params] = await Promise.all([
+    prisma.booking.findMany({ orderBy: { createdAt: "desc" } }),
+    getCalendarConnection(),
+    searchParams,
+  ]);
 
   return (
     <main className="min-h-screen bg-light">
@@ -50,13 +60,62 @@ export default async function AdminDashboardPage() {
       </header>
 
       <div className="mx-auto max-w-6xl px-6 py-10">
+        {params.calendarConnected && (
+          <p className="mb-6 rounded-lg bg-green-100 px-4 py-3 text-sm text-green-700">
+            Google Calendar connecté avec succès.
+          </p>
+        )}
+        {params.calendarError && (
+          <p className="mb-6 rounded-lg bg-red-100 px-4 py-3 text-sm text-red-700">
+            {params.calendarError}
+          </p>
+        )}
+
+        <div className="mb-8 flex flex-col items-start justify-between gap-4 rounded-xl bg-white p-5 shadow-sm sm:flex-row sm:items-center">
+          <div className="flex items-center gap-3">
+            {calendarConnection ? (
+              <CalendarCheck2 className="text-green-600" size={22} />
+            ) : (
+              <CalendarPlus className="text-[#999]" size={22} />
+            )}
+            <div>
+              <p className="font-semibold text-primary">
+                {calendarConnection
+                  ? "Google Calendar connecté"
+                  : "Google Calendar non connecté"}
+              </p>
+              {calendarConnection?.email && (
+                <p className="text-sm text-[#777]">{calendarConnection.email}</p>
+              )}
+            </div>
+          </div>
+
+          {calendarConnection ? (
+            <form action={disconnectGoogleCalendar}>
+              <button
+                type="submit"
+                className="text-sm font-semibold text-red-600 hover:underline"
+              >
+                Déconnecter
+              </button>
+            </form>
+          ) : (
+            <Link
+              href="/admin/google/connect"
+              className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+            >
+              Connecter Google Calendar
+            </Link>
+          )}
+        </div>
+
         {bookings.length === 0 ? (
           <p className="text-center text-[#777]">
             Aucune demande de réservation pour le moment.
           </p>
         ) : (
           <div className="overflow-x-auto rounded-xl bg-white shadow-sm">
-            <table className="w-full min-w-[900px] text-left text-sm">
+            <table className="w-full min-w-[1000px] text-left text-sm">
               <thead>
                 <tr className="border-b border-[#eee] text-xs uppercase tracking-wide text-[#999]">
                   <th className="px-4 py-3">Reçue le</th>
@@ -67,6 +126,7 @@ export default async function AdminDashboardPage() {
                   <th className="px-4 py-3">Niveau</th>
                   <th className="px-4 py-3">Message</th>
                   <th className="px-4 py-3">Statut</th>
+                  <th className="px-4 py-3">Calendrier</th>
                 </tr>
               </thead>
               <tbody>
@@ -110,6 +170,25 @@ export default async function AdminDashboardPage() {
                         bookingId={booking.id}
                         status={booking.status}
                       />
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex flex-col items-start gap-2">
+                        {booking.googleEventId ? (
+                          <span className="text-xs font-semibold text-green-700">
+                            Ajouté ✓
+                          </span>
+                        ) : calendarConnection ? (
+                          <CreateEventButton bookingId={booking.id} />
+                        ) : (
+                          <span className="text-xs text-[#999]">—</span>
+                        )}
+                        <a
+                          href={`/admin/bookings/${booking.id}/ics`}
+                          className="text-xs font-semibold text-primary hover:underline"
+                        >
+                          Télécharger .ics
+                        </a>
+                      </div>
                     </td>
                   </tr>
                 ))}

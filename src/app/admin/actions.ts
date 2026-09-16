@@ -6,6 +6,10 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { createSessionToken, SESSION_COOKIE } from "@/lib/session";
+import {
+  createCalendarEventForBooking,
+  disconnectGoogleAccount,
+} from "@/lib/google-calendar";
 
 function passwordsMatch(input: string, expected: string) {
   const inputBuffer = Buffer.from(input);
@@ -49,10 +53,27 @@ export async function updateBookingStatus(
   bookingId: string,
   status: "NOUVELLE" | "CONFIRMEE" | "ARCHIVEE",
 ) {
-  await prisma.booking.update({
+  const booking = await prisma.booking.update({
     where: { id: bookingId },
     data: { status },
   });
 
+  if (status === "CONFIRMEE" && !booking.googleEventId) {
+    await createCalendarEventForBooking(booking).catch(() => null);
+  }
+
+  revalidatePath("/admin");
+}
+
+export async function createCalendarEventAction(bookingId: string) {
+  const booking = await prisma.booking.findUniqueOrThrow({
+    where: { id: bookingId },
+  });
+  await createCalendarEventForBooking(booking);
+  revalidatePath("/admin");
+}
+
+export async function disconnectGoogleCalendar() {
+  await disconnectGoogleAccount();
   revalidatePath("/admin");
 }
