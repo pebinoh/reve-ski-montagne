@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "R'Eve Ski Montagne avec Évelyne. Guide de ski, snowboard et hors-piste à Sainte-Foy et Haute-Tarentaise.",
   icons: {
-    icon: "/icon.svg",
+    icon: "/images/logo_reve.png",
   },
   openGraph: {
     title: "R'Eve Ski Montagne",
@@ -45,7 +45,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "SportsActivityLocation",
               name: "R'Eve Ski Montagne",
-              image: "/icon.svg",
+              image: "/images/logo_reve.png",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Sainte-Foy-Tarentaise",

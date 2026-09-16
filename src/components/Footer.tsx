@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-3">
           <div>
-            <Logo variant="light" />
+            <Logo />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-cream/55">
               Avec Évelyne, vivez la montagne autrement. Sécurité, pédagogie
               et bonne humeur sur les sommets de Sainte-Foy.

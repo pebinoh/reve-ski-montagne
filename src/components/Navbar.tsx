@@ -35,7 +35,7 @@ export default function Navbar() {
       }`}
     >
       <Link href="/#accueil">
-        <Logo variant={solid ? "dark" : "light"} />
+        <Logo />
       </Link>
 
       <button
