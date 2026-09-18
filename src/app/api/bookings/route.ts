@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { bookingSchema } from "@/lib/booking-schema";
 import { upsertClient } from "@/lib/client";
+import { sendPushToAll } from "@/lib/push";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
@@ -44,6 +45,12 @@ export async function POST(request: Request) {
       clientId: client.id,
     },
   });
+
+  await sendPushToAll({
+    title: "Nouvelle demande de réservation",
+    body: `${data.name} — ${data.activityType}`,
+    url: "/admin",
+  }).catch(() => null);
 
   return NextResponse.json({ id: booking.id }, { status: 201 });
 }

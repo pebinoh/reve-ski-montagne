@@ -6,6 +6,7 @@ import { logout, disconnectGoogleCalendar } from "./actions";
 import BookingStatusSelect from "@/components/admin/BookingStatusSelect";
 import CreateEventButton from "@/components/admin/CreateEventButton";
 import ResendConfirmationButton from "@/components/admin/ResendConfirmationButton";
+import PushNotificationSetup from "@/components/admin/PushNotificationSetup";
 import Logo from "@/components/Logo";
 
 export const dynamic = "force-dynamic";
@@ -85,6 +86,8 @@ export default async function AdminDashboardPage({
             {params.calendarError}
           </p>
         )}
+
+        <PushNotificationSetup />
 
         <div className="mb-8 flex flex-col items-start justify-between gap-4 rounded-xl bg-white p-5 shadow-sm sm:flex-row sm:items-center">
           <div className="flex items-center gap-3">

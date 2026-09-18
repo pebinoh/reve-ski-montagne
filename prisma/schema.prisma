@@ -60,6 +60,15 @@ model Booking {
   invoices Invoice[]
 }
 
+// Abonnement à une notification push (un par appareil/navigateur installé).
+model PushSubscription {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+}
+
 // Ligne unique stockant les jetons OAuth du compte Google de la monitrice.
 model CalendarConnection {
   id           String   @id @default("singleton")

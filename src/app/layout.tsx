@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 
@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     images: ["/images/hero_ski.jpg"],
     type: "website",
   },
+  manifest: "/manifest.webmanifest",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#17191b",
 };
 
 export default function RootLayout({
