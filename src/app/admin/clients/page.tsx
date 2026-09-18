@@ -36,6 +36,12 @@ export default async function ClientsPage() {
           >
             Réservations
           </Link>
+          <Link
+            href="/admin/clients/new"
+            className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white"
+          >
+            Nouveau client
+          </Link>
         </div>
       </div>
 
