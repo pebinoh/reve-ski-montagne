@@ -51,6 +51,9 @@ model Booking {
   // Intégration Google Calendar
   googleEventId  String?
 
+  // Email de confirmation envoyé au client
+  confirmationSentAt DateTime?
+
   client   Client? @relation(fields: [clientId], references: [id])
   clientId String?
 

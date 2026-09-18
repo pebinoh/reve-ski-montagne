@@ -10,6 +10,7 @@ import {
   createCalendarEventForBooking,
   disconnectGoogleAccount,
 } from "@/lib/google-calendar";
+import { sendBookingConfirmationEmail } from "@/lib/email";
 
 function passwordsMatch(input: string, expected: string) {
   const inputBuffer = Buffer.from(input);
@@ -58,9 +59,41 @@ export async function updateBookingStatus(
     data: { status },
   });
 
+  let warning: string | null = null;
+
   if (status === "CONFIRMEE" && !booking.googleEventId) {
     await createCalendarEventForBooking(booking).catch(() => null);
   }
+
+  if (status === "CONFIRMEE" && !booking.confirmationSentAt) {
+    try {
+      await sendBookingConfirmationEmail(booking);
+      await prisma.booking.update({
+        where: { id: bookingId },
+        data: { confirmationSentAt: new Date() },
+      });
+    } catch (err) {
+      warning = `Statut mis à jour, mais l'email de confirmation n'a pas pu être envoyé : ${
+        err instanceof Error ? err.message : "erreur inconnue"
+      }`;
+    }
+  }
+
+  revalidatePath("/admin");
+  return warning;
+}
+
+export async function resendBookingConfirmation(bookingId: string) {
+  const booking = await prisma.booking.findUniqueOrThrow({
+    where: { id: bookingId },
+  });
+
+  await sendBookingConfirmationEmail(booking);
+
+  await prisma.booking.update({
+    where: { id: bookingId },
+    data: { confirmationSentAt: new Date() },
+  });
 
   revalidatePath("/admin");
 }

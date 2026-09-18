@@ -5,6 +5,7 @@ import { getCalendarConnection } from "@/lib/google-calendar";
 import { logout, disconnectGoogleCalendar } from "./actions";
 import BookingStatusSelect from "@/components/admin/BookingStatusSelect";
 import CreateEventButton from "@/components/admin/CreateEventButton";
+import ResendConfirmationButton from "@/components/admin/ResendConfirmationButton";
 import Logo from "@/components/Logo";
 
 export const dynamic = "force-dynamic";
@@ -185,6 +186,16 @@ export default async function AdminDashboardPage({
                         bookingId={booking.id}
                         status={booking.status}
                       />
+                      {booking.status === "CONFIRMEE" && (
+                        <div className="mt-2">
+                          {booking.confirmationSentAt ? (
+                            <p className="text-xs text-[#999]">
+                              Email envoyé le {formatDate(booking.confirmationSentAt)}
+                            </p>
+                          ) : null}
+                          <ResendConfirmationButton bookingId={booking.id} />
+                        </div>
+                      )}
                     </td>
                     <td className="px-4 py-4">
                       <div className="flex flex-col items-start gap-2">
