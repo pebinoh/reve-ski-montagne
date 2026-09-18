@@ -50,7 +50,9 @@ export async function POST(request: Request) {
     title: "Nouvelle demande de réservation",
     body: `${data.name} — ${data.activityType}`,
     url: "/admin",
-  }).catch(() => null);
+  }).catch((err) => {
+    console.error("Échec de l'envoi de la notification push :", err);
+  });
 
   return NextResponse.json({ id: booking.id }, { status: 201 });
 }
