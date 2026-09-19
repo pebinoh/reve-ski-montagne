@@ -38,42 +38,42 @@ export default async function AdminDashboardPage({
 
   return (
     <main className="min-h-screen bg-light">
-      <header className="flex items-center justify-between bg-white px-6 py-4 shadow-sm">
+      <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 bg-white px-6 py-4 shadow-sm">
         <div className="flex items-center gap-4">
           <Logo />
           <h1 className="hidden font-title text-lg italic text-primary sm:block">
             Réservations
           </h1>
         </div>
-        <div className="flex items-center gap-5">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <Link
             href="/admin/content"
-            className="text-sm font-semibold text-[#666] hover:text-primary"
+            className="text-sm font-semibold whitespace-nowrap text-[#666] hover:text-primary"
           >
             Contenu du site
           </Link>
           <Link
             href="/admin/clients"
-            className="text-sm font-semibold text-[#666] hover:text-primary"
+            className="text-sm font-semibold whitespace-nowrap text-[#666] hover:text-primary"
           >
             Clients
           </Link>
           <Link
             href="/admin/invoices"
-            className="text-sm font-semibold text-[#666] hover:text-primary"
+            className="text-sm font-semibold whitespace-nowrap text-[#666] hover:text-primary"
           >
             Factures
           </Link>
           <Link
             href="/admin/settings"
-            className="text-sm font-semibold text-[#666] hover:text-primary"
+            className="text-sm font-semibold whitespace-nowrap text-[#666] hover:text-primary"
           >
             Réglages
           </Link>
           <form action={logout}>
             <button
               type="submit"
-              className="text-sm font-semibold text-[#666] hover:text-primary"
+              className="text-sm font-semibold whitespace-nowrap text-[#666] hover:text-primary"
             >
               Déconnexion
             </button>
