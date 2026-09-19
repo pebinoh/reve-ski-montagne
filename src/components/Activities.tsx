@@ -29,6 +29,8 @@ export default function Activities({ activities }: { activities: Activity[] }) {
                     src={activity.image}
                     alt={activity.title}
                     fill
+                    sizes="(min-width: 768px) 35vw, 90vw"
+                    loading="lazy"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>

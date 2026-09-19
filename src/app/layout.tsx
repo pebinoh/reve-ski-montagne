@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site-url";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,17 +17,42 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "R'Eve Ski Montagne | Guide de Ski Sainte-Foy-Tarentaise",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "R'Eve Ski Montagne | Guide de Ski Indépendante à Sainte-Foy-Tarentaise",
+    template: "%s | R'Eve Ski Montagne",
+  },
   description:
-    "R'Eve Ski Montagne avec Évelyne. Guide de ski, snowboard et hors-piste à Sainte-Foy et Haute-Tarentaise.",
+    "Évelyne, guide de ski indépendante à Sainte-Foy-Tarentaise (Savoie). Cours particuliers, freeride, hors-piste, ski de randonnée et séjours en itinérance en Haute-Tarentaise.",
+  keywords: [
+    "moniteur de ski Sainte-Foy-Tarentaise",
+    "guide de ski indépendant Savoie",
+    "hors-piste Haute-Tarentaise",
+    "ski de randonnée Sainte-Foy",
+    "freeride Tarentaise",
+    "cours de ski particulier Savoie",
+  ],
   icons: {
     icon: "/images/logo_reve.png",
   },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "R'Eve Ski Montagne",
-    description: "Aventures ski & montagne avec Évelyne.",
+    description:
+      "Guide de ski indépendante à Sainte-Foy-Tarentaise. Freeride, hors-piste, ski de randonnée et séjours en itinérance.",
     images: ["/images/hero_ski.jpg"],
     type: "website",
+    locale: "fr_FR",
+    siteName: "R'Eve Ski Montagne",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "R'Eve Ski Montagne",
+    description:
+      "Guide de ski indépendante à Sainte-Foy-Tarentaise, Savoie.",
+    images: ["/images/hero_ski.jpg"],
   },
   manifest: "/manifest.webmanifest",
 };
@@ -42,27 +68,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${inter.variable} ${fraunces.variable}`}>
-      <body className="min-h-screen antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SportsActivityLocation",
-              name: "R'Eve Ski Montagne",
-              image: "/images/logo_reve.png",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Sainte-Foy-Tarentaise",
-                postalCode: "73640",
-                addressCountry: "FR",
-              },
-              priceRange: "€€",
-            }),
-          }}
-        />
-        {children}
-      </body>
+      <body className="min-h-screen antialiased">{children}</body>
     </html>
   );
 }

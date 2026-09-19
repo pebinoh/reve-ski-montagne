@@ -27,6 +27,7 @@ export default function Presentation({
               src={image}
               alt="Portrait Évelyne, guide de ski"
               fill
+              sizes="(min-width: 768px) 40vw, 90vw"
               className="object-cover grayscale-[15%]"
             />
           </div>

@@ -84,23 +84,23 @@ model SiteContent {
   // Philosophie
   philosophyLabel String @default("L'esprit de la montagne")
   philosophyTitle String @default("Vivre la montagne autrement, loin des foules.")
-  philosophyText  String @default("Basée à Sainte-Foy-Tarentaise, je vous guide à travers les itinéraires secrets de la vallée. Que vous cherchiez la poudreuse vierge ou une belle randonnée contemplative, mon objectif est de construire avec vous une aventure sur mesure, en toute sécurité.") @db.Text
+  philosophyText  String @default("Basée à Sainte-Foy-Tarentaise, au cœur de la Haute-Tarentaise, je vous emmène à la découverte d'itinéraires secrets, loin de la foule des pistes. Que vous rêviez de poudreuse vierge en hors-piste ou d'une randonnée à ski contemplative, mon objectif reste le même : construire avec vous une aventure sur mesure, dans le respect de la montagne et en toute sécurité.") @db.Text
 
   // Présentation ("Qui suis-je")
   presentationTitle  String @default("Évelyne, votre guide passionnée")
-  presentationText   String @default("Amoureuse de la montagne et de ski, j'ai fait de ma passion mon métier. Installée au cœur de la Tarentaise, je connais chaque recoin de Sainte-Foy et navigue sur la Rosière, Tignes et Val d'Isère.\n\nMon approche : sécurité, plaisir et partage.\n\nQue vous soyez débutant en hors-piste ou expert en quête de pentes raides, je m'adapte à votre niveau et vos envies pour transformer votre journée de ski en un souvenir inoubliable.") @db.Text
+  presentationText   String @default("Amoureuse de la montagne depuis toujours, j'ai fait de ma passion pour le ski mon métier. Diplômée d'État et installée au cœur de la Haute-Tarentaise, je connais chaque recoin de Sainte-Foy et j'évolue aussi sur les domaines voisins de La Rosière, Tignes et Val d'Isère.\n\nMon approche : sécurité, plaisir et partage — à chaque sortie.\n\nDébutant curieux de hors-piste ou skieur expérimenté en quête de pentes raides et de poudreuse, je m'adapte à votre niveau et à vos envies pour transformer votre journée de ski en un souvenir inoubliable.") @db.Text
   presentationImage  String @default("/images/portrait_evelyne.jpg")
   presentationBadges String @default("Diplômée d'État, Guide locale")
 
   // Activités (3 emplacements fixes)
   activity1Title String @default("Freeride & Hors-Piste")
-  activity1Text  String @default("Découvrez les faces cachées de Sainte-Foy. La trace parfaite vous attend dans la poudreuse.")
+  activity1Text  String @default("Découvrez les faces cachées de Sainte-Foy-Tarentaise. Entre poudreuse vierge et couloirs techniques, la trace parfaite vous attend, adaptée à votre niveau.")
   activity1Image String @default("/images/ski_rando_1.jpg")
   activity2Title String @default("Ski de Randonnée")
-  activity2Text  String @default("Échappez aux remontées mécaniques. Le calme, l'effort et des paysages à couper le souffle.")
+  activity2Text  String @default("Échappez aux remontées mécaniques et gagnez les sommets à la force du mollet. Le calme, l'effort partagé et des panoramas à couper le souffle sur la Haute-Tarentaise.")
   activity2Image String @default("/images/ski_action_1.jpg")
   activity3Title String @default("Séjour en Itinérance")
-  activity3Text  String @default("L'aventure sur plusieurs jours, de refuge en refuge. Une immersion totale pour déconnecter.")
+  activity3Text  String @default("L'aventure sur plusieurs jours, de refuge en refuge, à travers les grands espaces de Savoie. Une immersion totale dans la montagne, pour déconnecter vraiment.")
   activity3Image String @default("/images/itinerance.jpg")
 
   // Séparateur (citation pleine page)
@@ -116,13 +116,13 @@ model SiteContent {
   instagramHandle     String @default("@reve_ski_montagne")
 
   // Contact
-  contactText    String @default("Faites votre demande de réservation ou contactez-moi directement pour discuter de votre projet.") @db.Text
+  contactText    String @default("Envie d'une sortie sur mesure ? Faites votre demande de réservation en ligne, ou contactez-moi directement pour construire ensemble votre projet — cours particulier, journée freeride ou séjour en itinérance.") @db.Text
   contactEmail   String @default("contact@reve-ski.com")
   contactPhone   String @default("+33 6 XX XX XX XX")
   contactAddress String @default("Sainte-Foy-Tarentaise, 73640")
 
   // Pied de page
-  footerText String @default("Avec Évelyne, vivez la montagne autrement. Sécurité, pédagogie et bonne humeur sur les sommets de Sainte-Foy.") @db.Text
+  footerText String @default("Avec Évelyne, guide de ski indépendante, vivez la montagne autrement. Sécurité, pédagogie et bonne humeur sur les sommets de Sainte-Foy-Tarentaise et de la Haute-Tarentaise.") @db.Text
 }
 
 // Ligne unique stockant les jetons OAuth du compte Google de la monitrice.
