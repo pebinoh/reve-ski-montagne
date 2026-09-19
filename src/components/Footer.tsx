@@ -20,7 +20,21 @@ function InstagramIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-export default function Footer() {
+export default function Footer({
+  text,
+  instagramProfileUrl,
+  instagramHandle,
+  address,
+  phone,
+  email,
+}: {
+  text: string;
+  instagramProfileUrl: string;
+  instagramHandle: string;
+  address: string;
+  phone: string;
+  email: string;
+}) {
   return (
     <footer className="border-t border-cream/10 bg-ink px-6 py-20 text-cream md:px-12">
       <div className="mx-auto max-w-6xl">
@@ -28,8 +42,7 @@ export default function Footer() {
           <div>
             <Logo />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-cream/55">
-              Avec Évelyne, vivez la montagne autrement. Sécurité, pédagogie
-              et bonne humeur sur les sommets de Sainte-Foy.
+              {text}
             </p>
           </div>
 
@@ -40,12 +53,12 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="https://www.instagram.com/reve_ski_montagne/"
+                  href={instagramProfileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-cream/75 transition-colors hover:text-cream"
                 >
-                  <InstagramIcon size={16} /> @reve_ski_montagne
+                  <InstagramIcon size={16} /> {instagramHandle}
                 </a>
               </li>
               <li>
@@ -67,13 +80,13 @@ export default function Footer() {
             </h4>
             <div className="space-y-3 text-sm text-cream/75">
               <p className="flex items-center gap-2">
-                <MapPin size={15} /> Sainte-Foy-Tarentaise, 73640
+                <MapPin size={15} /> {address}
               </p>
               <p className="flex items-center gap-2">
-                <Phone size={15} /> +33 6 XX XX XX XX
+                <Phone size={15} /> {phone}
               </p>
               <p className="flex items-center gap-2">
-                <Mail size={15} /> contact@reve-ski.com
+                <Mail size={15} /> {email}
               </p>
             </div>
           </div>

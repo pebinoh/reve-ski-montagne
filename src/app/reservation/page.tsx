@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import BookingForm from "@/components/BookingForm";
 import FadeIn from "@/components/FadeIn";
+import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = {
   title: "Réserver | R'Eve Ski Montagne",
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
     "Faites votre demande de réservation pour une sortie ski, freeride ou randonnée avec Évelyne à Sainte-Foy-Tarentaise.",
 };
 
-export default function ReservationPage() {
+export default async function ReservationPage() {
+  const content = await getSiteContent();
+
   return (
     <>
       <Navbar />
@@ -33,7 +36,14 @@ export default function ReservationPage() {
           </FadeIn>
         </div>
       </main>
-      <Footer />
+      <Footer
+        text={content.footerText}
+        instagramProfileUrl={content.instagramProfileUrl}
+        instagramHandle={content.instagramHandle}
+        address={content.contactAddress}
+        phone={content.contactPhone}
+        email={content.contactEmail}
+      />
       <BackToTop />
     </>
   );

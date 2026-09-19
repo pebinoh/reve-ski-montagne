@@ -10,16 +10,10 @@ declare global {
   }
 }
 
-const reels = [
-  "https://www.instagram.com/reel/DGQzWRoIfAc/",
-  "https://www.instagram.com/reel/DFqXGWyofLS/",
-  "https://www.instagram.com/reel/C5h_QNOooq3/",
-];
-
-export default function Gallery() {
+export default function Gallery({ reels }: { reels: string[] }) {
   useEffect(() => {
     window.instgrm?.Embeds.process();
-  }, []);
+  }, [reels]);
 
   return (
     <section id="galerie" className="bg-stone px-6 py-28 md:px-12 md:py-36">

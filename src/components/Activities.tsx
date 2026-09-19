@@ -1,28 +1,9 @@
 import Image from "next/image";
 import FadeIn from "./FadeIn";
 
-const activities = [
-  {
-    index: "01",
-    image: "/images/ski_rando_1.jpg",
-    title: "Freeride & Hors-Piste",
-    text: "Découvrez les faces cachées de Sainte-Foy. La trace parfaite vous attend dans la poudreuse.",
-  },
-  {
-    index: "02",
-    image: "/images/ski_action_1.jpg",
-    title: "Ski de Randonnée",
-    text: "Échappez aux remontées mécaniques. Le calme, l'effort et des paysages à couper le souffle.",
-  },
-  {
-    index: "03",
-    image: "/images/itinerance.jpg",
-    title: "Séjour en Itinérance",
-    text: "L'aventure sur plusieurs jours, de refuge en refuge. Une immersion totale pour déconnecter.",
-  },
-];
+type Activity = { title: string; text: string; image: string };
 
-export default function Activities() {
+export default function Activities({ activities }: { activities: Activity[] }) {
   return (
     <section id="activites" className="bg-cream px-6 py-28 md:px-12 md:py-36">
       <div className="mx-auto max-w-6xl">
@@ -37,10 +18,10 @@ export default function Activities() {
 
         <div className="border-t border-ink/10">
           {activities.map((activity, i) => (
-            <FadeIn key={activity.title} delay={i * 0.08}>
+            <FadeIn key={i} delay={i * 0.08}>
               <div className="group grid grid-cols-1 items-center gap-8 border-b border-ink/10 py-10 md:grid-cols-[80px_1.2fr_1.6fr] md:gap-12">
                 <span className="font-title text-2xl italic text-ink/30">
-                  {activity.index}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
 
                 <div className="relative aspect-[16/10] w-full overflow-hidden md:aspect-[4/3]">

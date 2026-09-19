@@ -1,7 +1,13 @@
 import Link from "next/link";
 import FadeIn from "./FadeIn";
 
-export default function Contact() {
+export default function Contact({
+  text,
+  email,
+}: {
+  text: string;
+  email: string;
+}) {
   return (
     <section id="contact" className="bg-ink px-6 py-28 text-center text-cream md:px-12 md:py-36">
       <div className="mx-auto max-w-3xl">
@@ -13,8 +19,7 @@ export default function Contact() {
             Prêt à chausser les skis ?
           </h2>
           <p className="mx-auto mb-12 max-w-xl text-base leading-relaxed text-cream/65">
-            Faites votre demande de réservation ou contactez-moi directement
-            pour discuter de votre projet.
+            {text}
           </p>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <Link
@@ -24,7 +29,7 @@ export default function Contact() {
               Réserver une sortie
             </Link>
             <a
-              href="mailto:contact@reve-ski.com"
+              href={`mailto:${email}`}
               className="rounded-full border border-cream/30 px-9 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-cream transition-all duration-300 hover:-translate-y-0.5 hover:border-cream"
             >
               Me contacter

@@ -47,6 +47,12 @@ export default async function AdminDashboardPage({
         </div>
         <div className="flex items-center gap-5">
           <Link
+            href="/admin/content"
+            className="text-sm font-semibold text-[#666] hover:text-primary"
+          >
+            Contenu du site
+          </Link>
+          <Link
             href="/admin/clients"
             className="text-sm font-semibold text-[#666] hover:text-primary"
           >

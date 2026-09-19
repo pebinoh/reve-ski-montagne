@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^5.9.1",
     "@prisma/client": "6.19.3",
     "@react-pdf/renderer": "^4.9.0",
+    "@vercel/blob": "^2.8.0",
     "framer-motion": "^13.3.0",
     "googleapis": "^181.0.0",
     "ics": "^3.12.0",

@@ -2,13 +2,36 @@
 
 import { motion } from "framer-motion";
 
-export default function Hero() {
+export default function Hero({
+  label,
+  title,
+  imageDesktop,
+  imageMobile,
+}: {
+  label: string;
+  title: string;
+  imageDesktop: string;
+  imageMobile: string;
+}) {
+  const titleLines = title.split("\n");
+
   return (
     <header
       id="accueil"
       className="relative flex h-screen items-end justify-start overflow-hidden text-cream"
     >
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(to_top,rgba(23,25,27,0.75),rgba(23,25,27,0.05)_55%),url('/images/hero_mobile.jpg')] bg-cover bg-top md:bg-[linear-gradient(to_top,rgba(23,25,27,0.7),rgba(23,25,27,0.05)_60%),url('/images/hero_ski.jpg')] md:bg-center md:bg-fixed" />
+      <div
+        className="absolute inset-0 -z-20 bg-cover bg-top md:bg-center md:bg-fixed"
+        style={{
+          backgroundImage: `linear-gradient(to top, rgba(23,25,27,0.75), rgba(23,25,27,0.05) 55%), url('${imageMobile}')`,
+        }}
+      />
+      <div
+        className="absolute inset-0 -z-10 hidden bg-cover bg-center md:block md:bg-fixed"
+        style={{
+          backgroundImage: `linear-gradient(to top, rgba(23,25,27,0.7), rgba(23,25,27,0.05) 60%), url('${imageDesktop}')`,
+        }}
+      />
 
       <div className="relative w-full px-6 pb-24 md:px-12 md:pb-28">
         <motion.p
@@ -17,7 +40,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mb-5 text-xs font-medium uppercase tracking-[0.35em] text-cream/70"
         >
-          Sainte-Foy-Tarentaise · Savoie
+          {label}
         </motion.p>
 
         <motion.h1
@@ -26,9 +49,12 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.45 }}
           className="max-w-4xl font-title text-5xl leading-[1.05] font-light italic md:text-7xl"
         >
-          Du rêve à la réalité,
-          <br />
-          la montagne autrement.
+          {titleLines.map((line, i) => (
+            <span key={i}>
+              {line}
+              {i < titleLines.length - 1 && <br />}
+            </span>
+          ))}
         </motion.h1>
 
         <motion.div
